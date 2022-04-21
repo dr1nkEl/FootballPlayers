@@ -13,6 +13,11 @@ public record CreatePlayerViewModel
     public IEnumerable<OptionViewModel> Countries { get; init; } = new List<OptionViewModel>();
 
     /// <summary>
+    /// Genders.
+    /// </summary>
+    public IEnumerable<OptionViewModel> Genders { get; init; } = new List<OptionViewModel>();
+
+    /// <summary>
     /// Teams.
     /// </summary>
     public IEnumerable<Team> Teams { get; init; } = new List<Team>();

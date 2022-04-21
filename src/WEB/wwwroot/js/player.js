@@ -39,6 +39,7 @@ async function updatePlayerList(id) {
     });
     setCountries();
     setTeams();
+    setGenders();
 }
 
 /**
@@ -57,6 +58,10 @@ function addPlayer(id, player) {
 
                 <label for="birthday${player.id}">Birthday</label>
                 <input type="date" id="birthday${player.id}" value="${player.birthDay.split('T')[0]}" disabled/>
+
+                <label>Gender</label>
+                <select id="gender${player.id}" class="gender" style="width:10%;" data-value="${player.gender}" disabled>
+                </select>
 
                 <label for="team${player.id}">Team</label>
                 <select id="team${player.id}" class="team" style="width:10%;" data-value="${player.teamId}" disabled>
@@ -85,6 +90,7 @@ async function editPlayer(id) {
     const birthday = $(`#birthday${id}`);
     const team = $(`#team${id}`);
     const teamSelected = $(`#team${id} option:selected`);
+    const gender = $(`#gender${id}`);
 
     if (button.data('state') == 'enabled') {
         let player = {
@@ -94,6 +100,7 @@ async function editPlayer(id) {
             birthDay: birthday.val(),
             teamName: teamSelected.text(),
             id: id,
+            gender: gender.val(),
         }
 
         country.attr('disabled', 'disabled');
@@ -101,6 +108,7 @@ async function editPlayer(id) {
         surname.attr('disabled', 'disabled');
         birthday.attr('disabled', 'disabled');
         team.attr('disabled', 'disabled');
+        gender.attr('disabled', 'disabled');
         button.data('state', 'disabled');
         await makeRequest('/api/player/patch', player, 'PATCH');
         hubConnection.invoke('Update', id);
@@ -111,6 +119,7 @@ async function editPlayer(id) {
         surname.removeAttr('disabled');
         birthday.removeAttr('disabled');
         team.removeAttr('disabled');
+        gender.removeAttr('disabled');
     }
 }
 
@@ -130,6 +139,25 @@ async function setCountries() {
             countryDom.append(`<option value=${country.value}>${country.text}</option>`)
         });
         countryDom.val(countryDom.data('value'));
+    });
+}
+
+/**
+ * Function to set genders.
+ * @async
+ * @function
+ * */
+async function setGenders() {
+    const gendersData = await makeRequest('/api/player/genders', {}, 'GET');
+    const genders = $('.gender');
+    $.each(genders, function () {
+        const genderDom = $(this);
+        genderDom.empty();
+        $.each(gendersData, function () {
+            const gender = $(this)[0];
+            genderDom.append(`<option value=${gender.value}>${gender.text}</option>`)
+        });
+        genderDom.val(genderDom.data('value'));
     });
 }
 
@@ -166,6 +194,8 @@ async function updatePlayer(player) {
     const id = player.id;
     $(`#country${id}`).val(player.country);
     $(`#country${id}`).data('value', player.country);
+    $(`#gender${id}`).data('value', player.gender);
+    $(`#gender${id}`).val(player.gender);
     $(`#nameInput${id}`).val(player.name);
     $(`#surnameInput${id}`).val(player.surname);
     $(`#birthday${id}`).val(player.birthDay.split('T')[0]);

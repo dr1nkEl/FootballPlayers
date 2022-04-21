@@ -16,7 +16,6 @@
         $(function(){
             updatePlayerList('list');
 
-            
             hubConnection.on('Add', async function (playerId) {
                 const res = await $.ajax({
                     type: 'GET',
@@ -30,6 +29,7 @@
                 addPlayer('list', res);
                 setTeams();
                 setCountries();
+                setGenders();
             });
 
             hubConnection.on('Update', async function (playerId) {

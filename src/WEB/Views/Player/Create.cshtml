@@ -17,6 +17,16 @@
     </div>
    
     <div>
+        <label>Gender</label>
+        <select asp-for="Player.Gender">
+            @foreach (var gender in Model.Genders)
+            {
+                <option value="@gender.Value">@gender.Text</option>
+            }
+        </select>
+    </div>
+
+    <div>
         <label>Country</label>
         <select asp-for="Player.Country" class="form-select">
             @foreach (var country in Model.Countries)
@@ -42,6 +52,9 @@
 @section Scripts{
     <script src="~/js/player.js"></script>
     <script>
+        /**
+         * Doc ready func.
+         */
         $(function(){
             $('#teamSelector').select2({
                 tags:true,

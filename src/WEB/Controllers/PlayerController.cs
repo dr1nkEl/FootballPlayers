@@ -50,6 +50,7 @@ public class PlayerController : Controller
         {
             Teams = teams,
             Countries = EnumService.ParseEnum<Country>(),
+            Genders = EnumService.ParseEnum<Gender>(),
         };
         return View(model);
     }

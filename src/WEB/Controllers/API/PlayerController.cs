@@ -96,7 +96,7 @@ public class PlayerController : ControllerBase
     }
 
     /// <summary>
-    /// GET player query.
+    /// GET player.
     /// </summary>
     /// <param name="id">ID.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
@@ -105,5 +105,15 @@ public class PlayerController : ControllerBase
     public async Task<Player> Get(int id, CancellationToken cancellationToken)
     {
         return await mediator.Send(new GetPlayerQuery(id), cancellationToken);
+    }
+
+    /// <summary>
+    /// GET genders.
+    /// </summary>
+    /// <returns>Genders.</returns>
+    [HttpGet]
+    public IEnumerable<OptionViewModel> Genders()
+    {
+        return EnumService.ParseEnum<Gender>();
     }
 }
