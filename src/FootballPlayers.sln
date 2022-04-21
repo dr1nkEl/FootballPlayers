@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB", "WEB\WEB.csproj", "{1F970967-BB5B-417A-942F-37CAB31468EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB", "WEB\WEB.csproj", "{1F970967-BB5B-417A-942F-37CAB31468EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CB4837CB-9C35-45A8-920F-E1966C895ECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CB4837CB-9C35-45A8-920F-E1966C895ECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{579661A1-DB46-4683-BDD7-9BAD0E9D1526}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCases", "UseCases\UseCases.csproj", "{579661A1-DB46-4683-BDD7-9BAD0E9D1526}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases.Common", "UseCases.Common\UseCases.Common.csproj", "{74363D97-D583-4BE6-A8D8-A28095E6C705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.SignalR", "Infrastructure.SignalR\Infrastructure.SignalR.csproj", "{BED4CB92-BC0F-492B-9FCB-F33F9CE460FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.SignalR", "Infrastructure.SignalR\Infrastructure.SignalR.csproj", "{BED4CB92-BC0F-492B-9FCB-F33F9CE460FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Abstractions", "Infrastructure.Abstractions\Infrastructure.Abstractions.csproj", "{47C2A0D8-363A-4601-BFF5-7B633F1B399C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Abstractions", "Infrastructure.Abstractions\Infrastructure.Abstractions.csproj", "{47C2A0D8-363A-4601-BFF5-7B633F1B399C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DataAccess", "Infrastructure.DataAccess\Infrastructure.DataAccess.csproj", "{4BF87611-CB5D-4EBA-807C-BD32BE7E36E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.DataAccess", "Infrastructure.DataAccess\Infrastructure.DataAccess.csproj", "{4BF87611-CB5D-4EBA-807C-BD32BE7E36E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{579661A1-DB46-4683-BDD7-9BAD0E9D1526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579661A1-DB46-4683-BDD7-9BAD0E9D1526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579661A1-DB46-4683-BDD7-9BAD0E9D1526}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74363D97-D583-4BE6-A8D8-A28095E6C705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74363D97-D583-4BE6-A8D8-A28095E6C705}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74363D97-D583-4BE6-A8D8-A28095E6C705}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74363D97-D583-4BE6-A8D8-A28095E6C705}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BED4CB92-BC0F-492B-9FCB-F33F9CE460FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BED4CB92-BC0F-492B-9FCB-F33F9CE460FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BED4CB92-BC0F-492B-9FCB-F33F9CE460FE}.Release|Any CPU.ActiveCfg = Release|Any CPU

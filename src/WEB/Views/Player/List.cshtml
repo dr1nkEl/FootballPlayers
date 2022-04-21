@@ -1,0 +1,50 @@
+﻿<div id="list">
+    
+</div>
+@section Scripts{
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl('@HubRoutes.Player')
+            .build();
+        hubConnection.start();
+    </script>
+    <script src="~/js/player.js"></script>
+    <script>
+        /**
+         * Doc ready func.
+         */
+        $(function(){
+            updatePlayerList('list');
+
+            
+            hubConnection.on('Add', async function (playerId) {
+                const res = await $.ajax({
+                    type: 'GET',
+                    url: `/api/player/get/${playerId}`,
+                    contentType: false,
+                    error: function (err) {
+                        alert('Failed to proceed request!');
+                    },
+                });
+
+                addPlayer('list', res);
+                setTeams();
+                setCountries();
+            });
+
+            hubConnection.on('Update', async function (playerId) {
+                const res = await $.ajax({
+                    type: 'GET',
+                    url: `/api/player/get/${playerId}`,
+                    contentType: false,
+                    error: function (err) {
+                        alert('Failed to proceed request!');
+                    },
+                });
+
+                updatePlayer(res);
+                setCountries();
+            });
+        })
+    </script>
+}

@@ -1,27 +1,24 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace Saritasa.People.Web;
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+/// <summary>
+/// Entry point class.
+/// </summary>
+internal sealed class Program
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    private static WebApplication app;
+
+    /// <summary>
+    /// Entry point method.
+    /// </summary>
+    /// <param name="args">Program arguments.</param>
+    public static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        var startup = new Startup(builder.Configuration);
+        startup.ConfigureServices(builder.Services, builder.Environment);
+        app = builder.Build();
+        startup.Configure(app, app.Environment);
+        await app.InitAsync();
+        await app.RunAsync();
+    }
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();

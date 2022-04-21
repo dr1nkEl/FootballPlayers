@@ -1,0 +1,64 @@
+﻿@model CreatePlayerViewModel
+
+<form class="text-center" asp-action="Create" asp-controller="Player" method="post" id="createPlayerForm">
+    <div>
+        <label>Name</label>
+        <input id="surname" asp-for="Player.Name" class="form-control" required/>
+    </div>
+    
+    <div>
+        <label>Surname</label>
+        <input id="surname" asp-for="Player.Surname" class="form-control" required/>
+    </div>
+    
+    <div>
+        <label>Birthday</label>
+        <input asp-for="Player.BirthDay" type="date" class="form-control" id="birthdayPicker" required/>
+    </div>
+   
+    <div>
+        <label>Country</label>
+        <select asp-for="Player.Country" class="form-select">
+            @foreach (var country in Model.Countries)
+            {
+                <option value="@country.Value">@country.Text</option>
+            }
+        </select>
+    </div>
+    
+    <div>
+        <label>Team</label>
+        <select id="teamSelector" asp-for="Player.TeamName" class="w-25" required>
+            @foreach (var team in Model.Teams)
+            {
+                <option>@team.Name</option>
+            }
+        </select>
+    </div>
+    
+
+    <button class="btn btn-primary" id="submitCreateFormBtn">Save</button>
+</form>
+@section Scripts{
+    <script src="~/js/player.js"></script>
+    <script>
+        $(function(){
+            $('#teamSelector').select2({
+                tags:true,
+            });
+            $('#birthdayPicker')[0].max=new Date().toLocaleDateString('en-ca');
+
+            const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl('@HubRoutes.Player')
+            .build();
+            hubConnection.start();
+            $('#submitCreateFormBtn').on('click', async function(e){
+                e.preventDefault();
+                const data = Object.fromEntries(new FormData(document.getElementById('createPlayerForm')).entries());
+                const res = await makeRequest('/api/player/create', data, 'POST')
+                hubConnection.invoke('Add', res);
+                window.location.href = '/player/list';
+            })
+        });
+    </script>
+}
